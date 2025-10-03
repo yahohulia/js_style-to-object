@@ -14,11 +14,11 @@ function convertToObject(sourceString) {
     .reduce((acc, declaration) => {
       const [key, value] = declaration.split(':');
 
-      if (key) {
-        acc[key.trim()] = value.trim();
+      if (typeof value === 'undefined') {
+        return acc;
       }
 
-      return acc;
+      return { ...acc, [key.trim()]: value.trim() };
     }, {});
 }
 
